@@ -1,7 +1,7 @@
 """
 Filename: vdddedupe.py
-Version: 0.0.0
-Last updated: 2018-12-30
+Version: 0.0.1
+Last updated: 2019-01-01
 Home: https://github.com/jsvine/visidata-plugins
 Author: Jeremy Singer-Vine
 
@@ -70,13 +70,13 @@ def select_duplicate_rows(sheet, duplicates = True):
     If `duplicates = False`, then the behavior is reversed; sets the selection
     status to `selected` for each row that is *not* a duplicate.
     """
-    before = len(sheet._selectedRows)
+    before = len(sheet.selectedRows)
 
     for row, is_dupe in gen_identify_duplicates(sheet):
         if is_dupe == duplicates:
             sheet.selectRow(row)
 
-    sel_count = len(sheet._selectedRows) - before
+    sel_count = len(sheet.selectedRows) - before
 
     more_str = " more" if before > 0 else ""
 
@@ -107,3 +107,15 @@ Sheet.dedupe_rows = dedupe_rows
 # Add longname-commands to VisiData to execute these methods
 Sheet.addCommand(None, "select-duplicate-rows", "vd.sheet.select_duplicate_rows()")
 Sheet.addCommand(None, "dedupe-rows", "vd.sheet.dedupe_rows()")
+
+"""
+# Changelog
+
+## 0.0.1 - 2019-01-01
+
+Internal change, no external effects: Migrates from ._selectedRows to .selectedRows.
+
+## 0.0.0 - 2018-12-30
+
+Initial release.
+"""
