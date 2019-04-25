@@ -49,3 +49,7 @@ This plugin adds one sheet command to VisiData:
 - `normalize-col-names` normalizes the names of all *non-hidden* columns in the active sheet, per the approach described above. Alias: `normalize-column-names`.
 
 See [the plugin file](plugins/vdnormcol.py) for additional details.
+
+## `vdfec.py`
+
+This plugin adds support for loading the Federal Election Commission's `.fec` files. In order for it to work, you'll need to install [fecfile](https://esonderegger.github.io/fecfile/): `pip install fecfile`. [Demo here](https://asciinema.org/a/Xyh2BFsUaOF0AlHTmMUbqQZPC).
