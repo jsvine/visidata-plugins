@@ -4,6 +4,14 @@ This repository serves as a place for me to share VisiData plugins I've written.
 
 All code is released under the MIT License.
 
+## Table of Contents
+
+- [vddedupe.py](#vddedupepy), for deduplicating rows
+- [vdnormcol.py](#vdnormcolpy), for normalizing column names
+- [vdfec.py](#vdfecpy), for loading `.fec` files
+
+---
+
 ## `vddedupe.py`
 
 This plugin adds two sheet commands to VisiData:
@@ -53,3 +61,5 @@ See [the plugin file](plugins/vdnormcol.py) for additional details.
 ## `vdfec.py`
 
 This plugin adds support for loading the Federal Election Commission's `.fec` files. In order for it to work, you'll need to install [fecfile](https://esonderegger.github.io/fecfile/): `pip install fecfile`. [Demo here](https://asciinema.org/a/Xyh2BFsUaOF0AlHTmMUbqQZPC).
+
+See [the plugin file](plugins/vdfec.py) for additional details.
