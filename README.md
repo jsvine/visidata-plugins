@@ -8,6 +8,7 @@ All code is released under the MIT License.
 
 - [vddedupe.py](#vddedupepy), for deduplicating rows
 - [vdnormcol.py](#vdnormcolpy), for normalizing column names
+- [vdtabulate.py](#vdtabulate), for copying/saving sheets as text-tables
 - [vdfec.py](#vdfecpy), for loading `.fec` files
 
 ---
@@ -57,6 +58,22 @@ This plugin adds one sheet command to VisiData:
 - `normalize-col-names` normalizes the names of all *non-hidden* columns in the active sheet, per the approach described above. Alias: `normalize-column-names`.
 
 See [the plugin file](plugins/vdnormcol.py) for additional details.
+
+## `vdtabulate.py`
+
+This plugin makes it possible to save sheets as text-tables, using
+the ["tabulate" library](https://bitbucket.org/astanin/python-tabulate).
+
+The plugin adds two sheet commands to VisiData:
+
+- `tabulate-copy` copies the sheet, as a text-table, to your clipboard
+- `tabulate-save` saves the sheet, as a text-table, to file
+
+It also adds one global option to VisiData:
+
+- `tabulate_format` specifies the default text-table format. ([See here](https://bitbucket.org/astanin/python-tabulate#rst-header-table-format) for valid formats.)
+
+See [the plugin file](plugins/vdtabulate.py) for additional details.
 
 ## `vdfec.py`
 
