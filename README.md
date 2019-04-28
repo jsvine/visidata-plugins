@@ -8,7 +8,7 @@ All code is released under the MIT License.
 
 - [vddedupe.py](#vddedupepy), for deduplicating rows
 - [vdnormcol.py](#vdnormcolpy), for normalizing column names
-- [vdtabulate.py](#vdtabulate), for copying/saving sheets as text-tables
+- [vdtabulate.py](#vdtabulatepy), for copying/saving sheets as text-tables
 - [vdfec.py](#vdfecpy), for loading `.fec` files
 
 ---
