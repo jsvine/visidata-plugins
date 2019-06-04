@@ -1,5 +1,5 @@
 """
-Filename: vdddedupe.py
+Filename: vddedupe.py
 Version: 0.0.1
 Last updated: 2019-01-01
 Home: https://github.com/jsvine/visidata-plugins
