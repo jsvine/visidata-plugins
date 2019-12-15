@@ -94,11 +94,8 @@ def dedupe_rows(sheet):
     """
     vs = copy(sheet)
     vs.name += "_deduped"
+    vd.rows = [row for row, is_dupe in gen_identify_duplicates(sheet) if not is_dupe]
     vd.push(vs)
-
-    for row, is_dupe in gen_identify_duplicates(sheet):
-        if is_dupe == False:
-            vs.addRow(row)
 
 # Set the two main functions above as methods on the Sheet class
 Sheet.select_duplicate_rows = select_duplicate_rows
