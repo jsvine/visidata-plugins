@@ -6,10 +6,10 @@ All code is released under the MIT License.
 
 ## Table of Contents
 
-- [vddedupe.py](#vddedupepy), for deduplicating rows
-- [vdnormcol.py](#vdnormcolpy), for normalizing column names
-- [vdtabulate.py](#vdtabulatepy), for copying/saving sheets as text-tables
-- [vdfec.py](#vdfecpy), for loading `.fec` files
+- [vddedupe.py](#vddedupepy), for deduplicating rows (VisiData v2.x)
+- [vdnormcol.py](#vdnormcolpy), for normalizing column names (VisiData v1.5.2)
+- [vdtabulate.py](#vdtabulatepy), for copying/saving sheets as text-tables (VisiData v1.5.2, no longer needed for v2.x)
+- [vdfec.py](#vdfecpy), for loading `.fec` files (VisiData v1.5.2)
 
 ---
 
