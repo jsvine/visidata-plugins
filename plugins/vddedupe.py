@@ -1,10 +1,4 @@
 """
-Filename: vddedupe.py
-Version: 0.0.1
-Last updated: 2019-01-01
-Home: https://github.com/jsvine/visidata-plugins
-Author: Jeremy Singer-Vine
-
 # Usage
 
 Duplicates are determined by the sheet's key columns.
@@ -25,8 +19,14 @@ values in just those columns.
   active sheet are included.
 """
 
+
+__version__ = '0.1.0'
+__author__ = 'Jeremy Singer-Vine <jsvine@gmail.com>'
+
 from visidata import (
     Sheet,
+    BaseSheet,
+    TableSheet,
     asyncthread,
     copy,
     warning,
@@ -53,7 +53,7 @@ def gen_identify_duplicates(sheet):
         cols_to_check = sheet.keyCols
 
     seen = set()
-    for r in Progress(sheet.rows):
+    for r in sheet.rows:
         vals = tuple(col.getValue(r) for col in cols_to_check)
         is_dupe = vals in seen
         if not is_dupe:
@@ -61,6 +61,7 @@ def gen_identify_duplicates(sheet):
         yield (r, is_dupe)
 
 
+@Sheet.api
 @asyncthread
 def select_duplicate_rows(sheet, duplicates = True):
     """
@@ -72,7 +73,9 @@ def select_duplicate_rows(sheet, duplicates = True):
     """
     before = len(sheet.selectedRows)
 
-    for row, is_dupe in gen_identify_duplicates(sheet):
+    prog = Progress(gen_identify_duplicates(sheet), gerund="selecting", total=sheet.nRows)
+
+    for row, is_dupe in prog:
         if is_dupe == duplicates:
             sheet.selectRow(row)
 
@@ -86,6 +89,7 @@ def select_duplicate_rows(sheet, duplicates = True):
         sheet.rowtype
     ))
 
+@Sheet.api
 @asyncthread
 def dedupe_rows(sheet):
     """
@@ -94,22 +98,27 @@ def dedupe_rows(sheet):
     """
     vs = copy(sheet)
     vs.name += "_deduped"
+
+    def _reload(vs=vs):
+        prog = Progress(gen_identify_duplicates(sheet), gerund="deduplicating", total=sheet.nRows)
+        for row, is_dupe in prog:
+            if not is_dupe:
+                vs.addRow(row)
+
+    vs.reload = _reload
+
     vd.push(vs)
 
-    for row, is_dupe in gen_identify_duplicates(sheet):
-        if is_dupe == False:
-            vs.addRow(row)
-
-# Set the two main functions above as methods on the Sheet class
-Sheet.select_duplicate_rows = select_duplicate_rows
-Sheet.dedupe_rows = dedupe_rows
-
 # Add longname-commands to VisiData to execute these methods
-Sheet.addCommand(None, "select-duplicate-rows", "vd.sheet.select_duplicate_rows()")
-Sheet.addCommand(None, "dedupe-rows", "vd.sheet.dedupe_rows()")
+BaseSheet.addCommand(None, "select-duplicate-rows", "sheet.select_duplicate_rows()")
+BaseSheet.addCommand(None, "dedupe-rows", "sheet.dedupe_rows()")
 
 """
 # Changelog
+
+## 0.1.0 - 2020-10-09
+
+Revised for compatibility with VisiData 2.x
 
 ## 0.0.1 - 2019-01-01
 
