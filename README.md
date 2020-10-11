@@ -2,6 +2,8 @@
 
 This repository serves as a place for me to share VisiData plugins I've written.
 
+__Note__: This repository has (mostly) been updated for VisiData 2.x. For plugin versions compatible with VisiData 1.5.2, see [this version of the repository](https://github.com/jsvine/visidata-plugins/tree/dbc1a9dd59026e84a9684dbe4fe8e77a9fdfb4ce).
+
 All code is released under the MIT License.
 
 ## Table of Contents
