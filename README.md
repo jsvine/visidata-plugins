@@ -9,7 +9,7 @@ All code is released under the MIT License.
 ## Table of Contents
 
 - [dedupe](dedupe), for deduplicating rows (VisiData v2.x)
-- [normcol](#normcol), for normalizing column names (VisiData v1.5.2)
+- [normcol](#normcol), for normalizing column names (VisiData v2.x)
 - [fec](#fec), for loading `.fec` files (VisiData v1.5.2)
 
 ---
