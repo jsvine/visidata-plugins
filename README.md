@@ -8,7 +8,6 @@ All code is released under the MIT License.
 
 - [dedupe](dedupe), for deduplicating rows (VisiData v2.x)
 - [normcol](#normcol), for normalizing column names (VisiData v1.5.2)
-- [tabulate](#tabulate), for copying/saving sheets as text-tables (VisiData v1.5.2, no longer needed for v2.x)
 - [fec](#fec), for loading `.fec` files (VisiData v1.5.2)
 
 ---
@@ -58,22 +57,6 @@ This plugin adds one sheet command to VisiData:
 - `normalize-col-names` normalizes the names of all *non-hidden* columns in the active sheet, per the approach described above. Alias: `normalize-column-names`.
 
 See [the plugin file](plugins/normcol) for additional details.
-
-## `tabulate`
-
-This plugin makes it possible to save sheets as text-tables, using
-the ["tabulate" library](https://bitbucket.org/astanin/python-tabulate).
-
-The plugin adds two sheet commands to VisiData:
-
-- `tabulate-copy` copies the sheet, as a text-table, to your clipboard
-- `tabulate-save` saves the sheet, as a text-table, to file
-
-It also adds one global option to VisiData:
-
-- `tabulate_format` specifies the default text-table format. ([See here](https://bitbucket.org/astanin/python-tabulate#rst-header-table-format) for valid formats.)
-
-See [the plugin file](plugins/tabulate) for additional details.
 
 ## `fec`
 
