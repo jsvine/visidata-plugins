@@ -20,19 +20,11 @@ values in just those columns.
 """
 
 
-__version__ = '0.1.0'
-__author__ = 'Jeremy Singer-Vine <jsvine@gmail.com>'
+__version__ = "0.1.0"
+__author__ = "Jeremy Singer-Vine <jsvine@gmail.com>"
 
-from visidata import (
-    Sheet,
-    BaseSheet,
-    TableSheet,
-    asyncthread,
-    copy,
-    warning,
-    Progress,
-    vd
-)
+from visidata import Sheet, BaseSheet, asyncthread, copy, warning, Progress, vd
+
 
 def gen_identify_duplicates(sheet):
     """
@@ -63,7 +55,7 @@ def gen_identify_duplicates(sheet):
 
 @Sheet.api
 @asyncthread
-def select_duplicate_rows(sheet, duplicates = True):
+def select_duplicate_rows(sheet, duplicates=True):
     """
     Given a sheet, sets the selection status in VisiData to `selected` for each
     row that is a duplicate of a prior row.
@@ -73,7 +65,8 @@ def select_duplicate_rows(sheet, duplicates = True):
     """
     before = len(sheet.selectedRows)
 
-    prog = Progress(gen_identify_duplicates(sheet), gerund="selecting", total=sheet.nRows)
+    gen = gen_identify_duplicates(sheet)
+    prog = Progress(gen, gerund="selecting", total=sheet.nRows)
 
     for row, is_dupe in prog:
         if is_dupe == duplicates:
@@ -83,14 +76,10 @@ def select_duplicate_rows(sheet, duplicates = True):
 
     more_str = " more" if before > 0 else ""
 
-    vd.status("selected {}{} {}".format(
-        sel_count,
-        more_str,
-        sheet.rowtype
-    ))
+    vd.status(f"selected {sel_count}{more_str} {sheet.rowtype}")
+
 
 @Sheet.api
-@asyncthread
 def dedupe_rows(sheet):
     """
     Given a sheet, pushes a new sheet in which only non-duplicate rows are
@@ -99,15 +88,18 @@ def dedupe_rows(sheet):
     vs = copy(sheet)
     vs.name += "_deduped"
 
-    def _reload(vs=vs):
-        prog = Progress(gen_identify_duplicates(sheet), gerund="deduplicating", total=sheet.nRows)
+    @asyncthread
+    def _reload(self=vs):
+        self.rows = []
+        gen = gen_identify_duplicates(sheet)
+        prog = Progress(gen, gerund="deduplicating", total=sheet.nRows)
         for row, is_dupe in prog:
             if not is_dupe:
-                vs.addRow(row)
+                self.addRow(row)
 
     vs.reload = _reload
-
     vd.push(vs)
+
 
 # Add longname-commands to VisiData to execute these methods
 BaseSheet.addCommand(None, "select-duplicate-rows", "sheet.select_duplicate_rows()")
