@@ -56,7 +56,7 @@ For instance, a sheet with the following columns names:
 
 This plugin adds one sheet command to VisiData:
 
-- `normalize-col-names` normalizes the names of all *non-hidden* columns in the active sheet, per the approach described above. Alias: `normalize-column-names`.
+- `normalize-col-names` normalizes the names of all *non-hidden* columns in the active sheet, per the approach described above.
 
 See [the plugin file](plugins/normcol) for additional details.
 

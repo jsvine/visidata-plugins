@@ -35,8 +35,7 @@ For instance, a sheet with the following columns names:
 ## Commands
 
 - `normalize-col-names` normalizes the names of all *non-hidden* columns in the
-  active sheet, per the approach described above. Alias:
-      `normalize-column-names`.
+  active sheet, per the approach described above.
 
 """
 
