@@ -22,7 +22,7 @@ This plugin adds two sheet commands to VisiData:
 
 - `dedupe-rows` pushes a new sheet in which only non-duplicate rows in the active sheet are included.
 
-See [the plugin file](plugins/dedupe) for usage details.
+See [the plugin file](plugins/dedupe.py) for usage details.
 
 ## `normcol`
 
@@ -58,10 +58,10 @@ This plugin adds one sheet command to VisiData:
 
 - `normalize-col-names` normalizes the names of all *non-hidden* columns in the active sheet, per the approach described above.
 
-See [the plugin file](plugins/normcol) for additional details.
+See [the plugin file](plugins/normcol.py) for additional details.
 
 ## `fec`
 
 This plugin adds support for loading the Federal Election Commission's `.fec` files. In order for it to work, you'll need to install [fecfile](https://esonderegger.github.io/fecfile/): `pip install fecfile`. [Demo here](https://asciinema.org/a/Xyh2BFsUaOF0AlHTmMUbqQZPC).
 
-See [the plugin file](plugins/fec) for additional details.
+See [the plugin file](plugins/fec.py) for additional details.
